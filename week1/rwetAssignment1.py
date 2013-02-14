@@ -2,18 +2,15 @@
 #my first python program
 import sys
 
-searchString = 'a'
-trString = 'e'
+#searchString = 'a'
+#trString = 'e'
 
 def translator(w):	
-	
-	if w.__contains__(searchString):
-		tr = w.replace(searchString,trString)
-		return tr	
-	else:
-		return w
-	 
+		 return w.replace(searchString,trString)
 
+
+searchString = sys.argv[1]
+trString = sys.argv [2]	 
 for line in sys.stdin:
 	line = line.strip()
 	#make a list of words from the line in stdin
