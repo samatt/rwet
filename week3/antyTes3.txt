@@ -1,0 +1,47 @@
+rapid - slow
+regularly - irregularly
+rich - poor
+right - wrong, left
+rigid - pliable, soft
+rough - smooth
+satisfactory - unsatisfactory
+security - insecurity
+scatter - collect
+serious - trivial
+second-hand - new
+sense - nonsense
+shopkeeper - customer
+singular - plural
+simple - complicated
+slim - thick, stout
+solid - liquid
+sober - drunk
+speaker - listener
+sour - sweet
+sorrow - joy
+sow - reap
+stand - lie
+straight - crooked
+strong - weak
+success - failure
+sunny - cloudy
+take - give
+tall - short
+tame - wild
+teacher - pupil
+thick - thin
+tight - slack, loose
+top - bottom
+transparent - opaque
+truth - untruth, lie
+up - down
+vacant - occupied
+valuable - valueless
+victory - defeat
+virtue - vice
+visible - invisible
+voluntary - compulsory
+vowel - consonant
+wax - wane
+wisdom - folly
+within - without

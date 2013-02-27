@@ -1,0 +1,99 @@
+happy - sad, miserable
+hard - soft
+harmful - harmless
+hasten - dawdle
+hate - love
+healthy - unhealthy, ill, diseased
+here - there
+heavy - light
+height - depth
+hero - coward
+hill - valley
+horizontal - vertical
+hinder - aid, help
+honest - dishonest
+humble - proud
+hunger - thirst
+imitation - genuine
+immense - tiny, minute
+imprison - free
+include - exclude
+increase - decrease
+inhabited - uninhabited
+inferior - superior
+inside - outside
+intelligent - unintelligent, stupid
+inhale - exhale
+interior - exterior, outside
+interesting - uninteresting, dull
+internal - external
+intentional - accidental
+join - separate
+junior - senior
+justice - injustice
+king - subject
+knowledge - ignorance
+laugh - cry
+lawful - unlawful
+lazy - industrious, energetic
+land - sea
+landlord - tenant
+large - little, small
+last - first
+lawyer - client
+lecturer - student
+lender - borrower
+lengthen - shorten
+left - right
+less - more
+light - dark, heavy
+like - dislike, unlike
+likely - unlikely
+leader - follower
+little - large, much, big
+lofty - lowly
+long - short
+loud - soft
+loss - find, win
+low - high
+loyal - disloyal
+mad - sane
+magnetize - demagnetize
+master - servant
+mature - immature
+maximum - minimum
+me - you
+merry - mirthless, sad
+minority - majority
+miser - spendthrift
+misunderstand - understand
+narrow - wide
+near - far, distant
+neat - untidy
+new - old
+night - day
+noisy - quiet
+North - South
+obedient - disobedient
+odd - even
+offer - refuse
+open - shut
+optimist - pessimist
+out - in
+parent - child
+past - present
+patient - impatient
+peace - war
+permanent - temporary
+please - displease
+plentiful - scarce
+poetry - prose
+possible - impossible
+poverty - wealth
+powerful - feeble, weak
+polite - impolite, rude
+private - public
+prudent - imprudent
+pretty - unsightly, ugly
+pure - impure
+qualified - unqualified
