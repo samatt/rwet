@@ -24,11 +24,27 @@ for line in open(source_file):
 
   #tweets[sentences[1]] = sentences[0],sentences[2]
   
-print tweets
+#print tweets
 
-#for pagenum in range(1, 11):
+for pagenum in range(1, 11):
 #  print tweets[keys[0]][5]
+  test =tweets[random.choice(len(keys)][1]
+  print test
+  # for line in txt1:
+  #   line = line.strip()
+
+  #   for matching_string in re.findall(r'\b\w+ [Yy]ou \w+', line):
+  #     line_1.append(matching_string)
+
+  #   for matching_string2 in re.findall(r'\b\w+ \w+ I \w+', line):
+  #   line_2.append(matching_string2)
+    
+  #   for matching_string3 in re.findall(r'\b\w+ we \w+', line):
+  #   line_3.append(matching_string3)
 
 
 
+  # print random.choice(line_1)
+  # print random.choice(line_2)
+  # print random.choice(line_3)
 
