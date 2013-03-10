@@ -10,11 +10,39 @@ from twitter import *
 import sys
 import csv
 import time
+import re
+import random
+import urllib
 
+
+
+
+def removeTwitterCrap(w):
+  w = re.sub(r'RT',' ',w)
+  w = re.sub(r'@\w+\b'," ", w)
+  w = re.sub(r'http:.+\b'," ", w)
+  return w
+
+search = sys.argv[1]
+locationFile = sys.argv[2]
+tweets =  dict()
+places = dict()
+
+for line in open(locationFile):
+  line = line.strip()
+  #split into sentences 
+  names = line.split(":")
+  if len(names)>1:
+  	#print names[0]
+  	places[names[0]] = names[1].split("$")
+#print places
+
+
+  
 # create twitter API object
 twitter = Twitter()
-tweets =  dict()
-search = sys.argv[1]
+
+
 oauth = OAuth(
 	'935447275-f7CdYLCF13kby9H1cUwlYK4ZUR9Jeo4IoyMpvZ6h', 
 	'giSYuMZb1cPH4YFUJVvBRVjmzyahKyWc7INyBDlXeQ', 
@@ -34,16 +62,24 @@ twitter = Twitter(domain='api.twitter.com',
 # open a file to append, and create a CSV writer object
 output = file("tweets.txt","a")
 
-
+code = places[random.choice(places.keys())][random.randint(0,3)]
+#code = places['NY'][random.randint(0,3)]
+code = code + ",10mi"
+#print urllib.unquote(code)
+code.strip()
 #for pagenum in range(1, 11):
-query = twitter.search.tweets(q = search,geocode = "40.770496,-73.989089,10mi",rrp=100)
+print code
+query = twitter.search.tweets(q = search,geocode = code ,rrp=100)
+#query = twitter.search.tweets(q = search,geocode = "40.770496,-73.989089,10mi",rrp=100)
+
 data = query.items()
+print data
 #data = json.loads(query.items())
-#print tweets
+#print code
 
 for tuples in data:	
 	for lists in  tuples:
-		print type(lists)
+		#print type(lists)
 
 		if (type(lists)==dict):
 			print 'No of tweets: %d' % lists[u'count'] 
@@ -59,7 +95,8 @@ for tuples in data:
 					user = user.encode('ascii', 'replace')
 					text =  dicts['text'] 
 					text = text.encode('ascii', 'replace')
-					#print text
+					#text = removeTwitterCrap(text);
+					print text
 					if dicts[u'place']:
 						print dicts['place']['name']
 						place = dicts['place']['name']
