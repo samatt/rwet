@@ -14,7 +14,7 @@ import time
 # create twitter API object
 twitter = Twitter()
 tweets =  dict()
-search = 'journey'
+search = sys.argv[1]
 oauth = OAuth(
 	'935447275-f7CdYLCF13kby9H1cUwlYK4ZUR9Jeo4IoyMpvZ6h', 
 	'giSYuMZb1cPH4YFUJVvBRVjmzyahKyWc7INyBDlXeQ', 
@@ -32,14 +32,11 @@ twitter = Twitter(domain='api.twitter.com',
  #until Returns tweets generated before the given date. Date should be formatted as YYYY-MM-DD.
 
 # open a file to append, and create a CSV writer object
-#csvfile = file("test.csv", "a")
 output = file("tweets.txt","a")
-#csvwriter = csv.writer(csvfile)
-#row = [ "user", "text", "place", "type"]
+
 
 #for pagenum in range(1, 11):
 query = twitter.search.tweets(q = search,geocode = "40.770496,-73.989089,10mi",rrp=100)
-#query = twitter.search.tweets(q = "the",rpp=100,lang='en')
 data = query.items()
 #data = json.loads(query.items())
 #print tweets
