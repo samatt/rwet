@@ -5,44 +5,33 @@
 #search based on geolocation information
 #
 #-----------------------------------------------------------------------
-import json
 from twitter import *
 import sys
-import csv
-import time
 import re
 import random
 import urllib
 
 
-
-
-def removeTwitterCrap(w):
-  w = re.sub(r'RT',' ',w)
-  w = re.sub(r'@\w+\b'," ", w)
-  w = re.sub(r'http:.+\b'," ", w)
-  return w
-
+# User inputs search string and geocode file
 search = sys.argv[1]
 locationFile = sys.argv[2]
 tweets =  dict()
 places = dict()
 
+#read coordinates from text file into a dictionary2
+#in this example file used is latlong.txt
 for line in open(locationFile):
   line = line.strip()
-  #split into sentences 
   names = line.split(":")
   if len(names)>1:
-  	#print names[0]
   	places[names[0]] = names[1].split("$")
-#print places
 
 
   
 # create twitter API object
 twitter = Twitter()
 
-
+#oAuth object required for twitter verification
 oauth = OAuth(
 	'935447275-f7CdYLCF13kby9H1cUwlYK4ZUR9Jeo4IoyMpvZ6h', 
 	'giSYuMZb1cPH4YFUJVvBRVjmzyahKyWc7INyBDlXeQ', 
@@ -55,68 +44,61 @@ twitter = Twitter(domain='api.twitter.com',
                   api_version='1.1')
 
 
-# perform a basic search 
-# twitter API docs: https://dev.twitter.com/docs/api/1/get/search
- #until Returns tweets generated before the given date. Date should be formatted as YYYY-MM-DD.
 
-# open a file to append, and create a CSV writer object
+
+# open a file to write al the incoming tweets to. This file is also the input to tweetdict.py
 output = file("tweets.txt","a")
 
+# Choose a random place to use for the geo code.
+# Current options are NY,LA,London,New Delhi, Bombay
 code = places[random.choice(places.keys())][random.randint(0,3)]
-#code = places['NY'][random.randint(0,3)]
-code = code + ",10mi"
-#print urllib.unquote(code)
-code.strip()
-#for pagenum in range(1, 11):
-print code
-query = twitter.search.tweets(q = search,geocode = code ,rrp=100)
-#query = twitter.search.tweets(q = search,geocode = "40.770496,-73.989089,10mi",rrp=100)
 
+#needed to concatenate the string like this otherwise I was getting erros in the search query
+#something to do with %20 being substituted for end of string or whitespace.
+code = code + ",10mi"
+code.strip()
+
+#used a loop sometimes to get a variety of results per script execution
+#for pagenum in range(1, 11):
+
+#Search Twitter!
+query = twitter.search.tweets(q = search,geocode = code ,rrp=100)
+
+#Do stuff with the result!
 data = query.items()
-print data
-#data = json.loads(query.items())
-#print code
+
+#I figured out the structure by reverse engineering what was coming in from the API
+#Im sure there is a  more effecient way of doing this. But this worked for me.
 
 for tuples in data:	
 	for lists in  tuples:
-		#print type(lists)
-
 		if (type(lists)==dict):
 			print 'No of tweets: %d' % lists[u'count'] 
-			#print lists
-
 		elif (type(lists)==list): 
-			
 			for dicts in lists:
-				#print dicts['geo']
+				#Each tweet was contained in  a dict sttructure with a lot of metadata
+				#This is how i parsed it to only store the data I cared about.
 				if dicts['text']:
-					#print dicts['user'] 
 					user = dicts['user'] ['name']
 					user = user.encode('ascii', 'replace')
 					text =  dicts['text'] 
 					text = text.encode('ascii', 'replace')
-					#text = removeTwitterCrap(text);
 					print text
+					#not all tweets had the geolocation info in their metadata
 					if dicts[u'place']:
 						print dicts['place']['name']
 						place = dicts['place']['name']
 						tweets[place] = text
 						placeType = dicts['place']['place_type']
-						#row = [ user, text, place, placeType ]
+						
+						#Used | as  a delimitter because , was coming up in  a lot of tweets.
 						row = "%s|%s|%s|%s|%s \n"%(search,user,text,place,placeType)
-						#user+"|"+text+"|"+place+"|"+placeType 
 						output.write(row)
-						#csvwriter.writerow(row)
 					else:
-						#row = [ user, text]
-						#row = +user+"|"+text
 						row = "%s|%s|%s \n"%(search,user,text)
 						output.write(row)
-						#csvwriter.writerow(row)
-					
 
-					#print dicts[u'text'] 
 #print "done page: %d" % (pagenum)			
 output.close()
-#csvfile.close()
+
 
