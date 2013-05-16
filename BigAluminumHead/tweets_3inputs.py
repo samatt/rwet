@@ -44,10 +44,10 @@ twitter = Twitter()
 
 #oAuth object required for twitter verification
 oauth = OAuth(
-	'935447275-f7CdYLCF13kby9H1cUwlYK4ZUR9Jeo4IoyMpvZ6h', 
-	'giSYuMZb1cPH4YFUJVvBRVjmzyahKyWc7INyBDlXeQ', 
-	'Rix6YbOOX4TnJbFiRrmkQw',
-	'etdqOFKHKhafZVQDqJSt4xJ4ki8QsG5YHsc4BD4Eecw'
+	'#####', 
+	'#####', 
+	'#####',
+	'#####'
 	)
                
 twitter = Twitter(domain='api.twitter.com',
